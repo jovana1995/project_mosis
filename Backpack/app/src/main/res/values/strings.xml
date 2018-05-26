@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Backpack</string>
+    <string name="backpack">Backpack</string>
+    <string name="track_and_rate"><![CDATA[Track&rate]]></string>
+</resources>

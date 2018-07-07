@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.os.Bundle;
 
 import com.example.aleksandra.backpack.R;
+import com.example.aleksandra.backpack.adapters.ProfileNewPlaceAdapter;
 
 public class MainActivity extends Activity {
 
@@ -19,7 +20,7 @@ public class MainActivity extends Activity {
                 @Override
                 public void run() {
                     /* Create an Intent that will start the Menu-Activity. */
-                    Intent mainIntent = new Intent(MainActivity.this,PlacesActivity.class);
+                    Intent mainIntent = new Intent(MainActivity.this,RankActivity.class);
                     startActivity(mainIntent);
                     finish();
                 }

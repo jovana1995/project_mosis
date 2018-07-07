@@ -8,11 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.aleksandra.backpack.R;
 
 import java.util.List;
 
+import static com.example.aleksandra.backpack.utils.Utils.loadImageWithGlide;
 import static com.example.aleksandra.backpack.utils.Utils.loadImageWithGlideCircle;
 
 public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHolder> {
@@ -31,7 +33,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull GalleryAdapter.ViewHolder holder, int position) {
-        loadImageWithGlideCircle(picsList.get(position), holder.image);
+        loadImageWithGlide(picsList.get(position), holder.image);
     }
 
     @Override
@@ -44,7 +46,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
 
         private ViewHolder(View itemView) {
             super(itemView);
-            image = itemView.findViewById(R.id.iv_comment_image);
+            image = itemView.findViewById(R.id.iw_gallery);
         }
     }
 }

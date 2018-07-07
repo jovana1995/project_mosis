@@ -35,5 +35,12 @@ public class Utils {
                 .into(imageView);
     }
 
+    public static void loadImageWithGlide(Uri url, final ImageView imageView) {
+        Glide.with(BackpackApplication.getAppContext())
+                .load(url)
+                .asBitmap()
+                .centerCrop()
+                .into(imageView);
+    }
 }
 

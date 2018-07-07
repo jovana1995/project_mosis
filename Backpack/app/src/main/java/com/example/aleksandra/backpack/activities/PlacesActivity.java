@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.aleksandra.backpack.BackpackApplication;
-import com.example.aleksandra.backpack.CommentModel;
+import com.example.aleksandra.backpack.models.PersonModel;
 import com.example.aleksandra.backpack.R;
 import com.example.aleksandra.backpack.adapters.CommentsAdapter;
 
@@ -19,9 +19,8 @@ import java.util.List;
 
 public class PlacesActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
     private CommentsAdapter adapter;
-    private List<CommentModel> commentsList = new ArrayList<>();
+    private List<PersonModel> commentsList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +31,9 @@ public class PlacesActivity extends AppCompatActivity {
     }
 
     private void testData() {
-        CommentModel cm = new CommentModel("Rusland Irkutsk", "The Netherlands", "I've visited this restaurant with my felow travelers from the hostel and I loved it! If I ever come to Spain again I will come here for sure...");
+        PersonModel cm = new PersonModel("Rusland Irkutsk", "The Netherlands", "I've visited this restaurant with my felow travelers from the hostel and I loved it! If I ever come to Spain again I will come here for sure...","10");
         commentsList.add(cm);
-        CommentModel cm2 = new CommentModel("John Rose", "USA", "The ambient is very interesting and the music is great. But I didn't like my dish, it was too hot. I even started crying! :/ ");
+        PersonModel cm2 = new PersonModel("John Rose", "USA", "The ambient is very interesting and the music is great. But I didn't like my dish, it was too hot. I even started crying! :/ ","10");
         commentsList.add(cm2);
         initViews();
     }
@@ -45,7 +44,7 @@ public class PlacesActivity extends AppCompatActivity {
 
         if (requestCode == 16) {
             if (resultCode == RESULT_OK) {
-                CommentModel cm2 = new CommentModel(data.getStringExtra("name"), data.getStringExtra("state"), data.getStringExtra("comment"));
+                PersonModel cm2 = new PersonModel(data.getStringExtra("name"), data.getStringExtra("state"), data.getStringExtra("comment"), data.getStringExtra("points"));
                 commentsList.add(cm2);
                 adapter.notifyDataSetChanged();
             }
@@ -53,7 +52,7 @@ public class PlacesActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        recyclerView = findViewById(R.id.recycler_view_comments);
+        RecyclerView recyclerView = findViewById(R.id.recycler_view_comments);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(BackpackApplication.getAppContext()));
         adapter = new CommentsAdapter(commentsList);
@@ -76,9 +75,18 @@ public class PlacesActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        Button btn2 = findViewById(R.id.bt_events);
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(BackpackApplication.getAppContext(), EventsActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
-    public void showComments(List<CommentModel> comments) {
+    public void showComments(List<PersonModel> comments) {
         this.commentsList = comments;
         initViews();
     }

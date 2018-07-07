@@ -56,4 +56,26 @@
     <string name="cancel">Cancel</string>
     <string name="add_comment">Add comment</string>
     <string name="slika">slika</string>
+    <string name="gallery">Gallery</string>
+    <string name="in_front_of_the_restaurant">In front of the restaurant</string>
+    <string name="_7pm">7pm</string>
+    <string name="events_list">Events</string>
+    <string name="event">Event</string>
+    <string name="join">Join</string>
+    <string name="anna_rusland_and_3_others_are_going">Anna, Rusland and 3 others are going</string>
+    <string name="see">See all</string>
+    <string name="tri">+3</string>
+    <string name="details">Details:</string>
+    <string name="going">Going</string>
+    <string name="mail_anne">anne.smith.89@gmail.com</string>
+    <string name="_2_hours_ago">2 hours ago</string>
+    <string name="add_event">Add Event</string>
+    <string name="new_place">New Place</string>
+    <string name="new_event">New Event</string>
+    <string name="where">Where?</string>
+    <string name="when">When?</string>
+    <string name="add_location">Add location</string>
+    <string name="add_new_place">New Place</string>
+    <string name="add_place">Add Place</string>
+    <string name="add_picure">Add picture</string>
 </resources>

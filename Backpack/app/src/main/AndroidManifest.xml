@@ -23,14 +23,36 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.SigninActivity" />
-        <activity android:name=".activities.LoginActivity" />
+        <activity
+            android:name=".activities.LoginActivity"
+            android:parentActivityName=".activities.SigninActivity" />
         <activity
             android:name=".activities.HomeActivity"
             android:label=" "
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activities.PlacesActivity" />
+        <activity
+            android:name=".activities.PlacesActivity"
+            android:parentActivityName=".activities.HomeActivity" />
         <activity android:name=".activities.NewCommentActivity" />
-        <activity android:name=".activities.GalleryActivity"></activity>
+        <activity
+            android:name=".activities.GalleryActivity"
+            android:parentActivityName=".activities.PlacesActivity" />
+        <activity
+            android:name=".activities.EventsActivity"
+            android:parentActivityName=".activities.HomeActivity" />
+        <activity
+            android:name=".activities.EventActivity"
+            android:parentActivityName=".activities.EventsActivity" />
+        <activity
+            android:name=".activities.PeopleGoingToEvent"
+            android:parentActivityName=".activities.EventActivity" />
+        <activity
+            android:name=".activities.ProfileActivity"
+            android:parentActivityName=".activities.HomeActivity" />
+        <activity android:name=".activities.AddEventActivity" />
+        <activity android:name=".activities.AddNewPlaceActivity" />
+        <activity android:name=".activities.RankActivity"
+            android:parentActivityName=".activities.HomeActivity"></activity>
     </application>
 
 </manifest>

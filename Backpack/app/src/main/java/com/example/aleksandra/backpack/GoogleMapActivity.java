@@ -23,10 +23,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.example.aleksandra.backpack.Models.User;
-import com.example.aleksandra.backpack.Models.UserData;
+import com.example.aleksandra.backpack.models.User;
+import com.example.aleksandra.backpack.models.*;
 import com.example.aleksandra.backpack.activities.HomeActivity;
 import com.example.aleksandra.backpack.activities.SigninActivity;
+import com.example.aleksandra.backpack.models.User;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -148,6 +149,7 @@ public class GoogleMapActivity extends FragmentActivity implements OnMapReadyCal
     {
 
         //ovde treba skloniti
+
         ArrayList<User> places = UserData.getInstance().getUsers();
         markerUserIDMap = new HashMap<Marker, Integer>((int) ((double) places.size() * 1.2));
         for (int i = 0; i < places.size(); i++) {

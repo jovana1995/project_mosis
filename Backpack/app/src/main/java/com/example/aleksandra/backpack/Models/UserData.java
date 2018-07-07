@@ -1,4 +1,4 @@
-package com.example.aleksandra.backpack.Models;
+package com.example.aleksandra.backpack.models;
 
 import android.net.Uri;
 import android.support.annotation.NonNull;

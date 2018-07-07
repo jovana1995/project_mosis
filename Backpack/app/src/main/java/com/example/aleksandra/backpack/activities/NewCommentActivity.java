@@ -28,6 +28,7 @@ public class NewCommentActivity extends AppCompatActivity {
                 data.putExtra("name","Anne Smith");
                 data.putExtra("state","England");
                 data.putExtra("comment",et.getText().toString());
+                data.putExtra("points", "10");
                 setResult(RESULT_OK,data);
                 finish();
             }

@@ -30,7 +30,8 @@
         android:scrollbars="vertical"
         android:inputType="textMultiLine"
         android:gravity="top"
-        android:layout_gravity="top"/>
+        android:layout_gravity="top"
+        tools:ignore="LabelFor" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -55,7 +56,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:drawableStart="@drawable/ic_action_cancel"
-            android:background="@color/yellow"
+            android:background="@color/colorDarkRed"
             android:text="@string/cancel"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="10dp"

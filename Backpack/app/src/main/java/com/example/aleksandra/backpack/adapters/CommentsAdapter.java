@@ -1,7 +1,6 @@
 package com.example.aleksandra.backpack.adapters;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,15 +9,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.aleksandra.backpack.CommentModel;
+import com.example.aleksandra.backpack.models.PersonModel;
 import com.example.aleksandra.backpack.R;
 
 import java.util.List;
 
 public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHolderPot> {
-    private List<CommentModel> commentsList;
+    private List<PersonModel> commentsList;
 
-    public CommentsAdapter(List<CommentModel> potsList) {
+    public CommentsAdapter(List<PersonModel> potsList) {
         this.commentsList = potsList;
     }
 
@@ -31,10 +30,10 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderPot holder, int position) {
-
+//todo ovo ne valja sad jer sam promenila PersonModel
         holder.name.setText(commentsList.get(position).getName());
         holder.state.setText(commentsList.get(position).getState());
-        holder.comment.setText(commentsList.get(position).getComment());
+        //holder.comment.setText(commentsList.get(position).getComment().get(position));
     }
 
     @Override

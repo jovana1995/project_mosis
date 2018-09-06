@@ -1,4 +1,4 @@
-package com.example.aleksandra.backpack.models;
+package com.example.aleksandra.backpack.Models;
 
 import java.io.Serializable;
 
@@ -12,8 +12,9 @@ public class EventModel implements Serializable {
     public String placeName;
     public String placeLocation;
     public String timePassed;
-
-    public EventModel(String when, String where, String personImage, String comment, String name, String state, String placeName, String placeLocation, String timePassed) {
+    public  String userID;
+    public  String eventKey;
+    public EventModel(String when, String where, String personImage, String comment, String name, String state, String placeName, String placeLocation, String timePassed, String pname) {
         this.when = when;
         this.where = where;
         this.personImage = personImage;
@@ -23,6 +24,15 @@ public class EventModel implements Serializable {
         this.placeName = placeName;
         this.placeLocation = placeLocation;
         this.timePassed = timePassed;
+        this.userID=pname;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String personName) {
+        this.userID = personName;
     }
 
     public String getPlaceName() {

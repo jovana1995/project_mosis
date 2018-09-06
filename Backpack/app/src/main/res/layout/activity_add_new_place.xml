@@ -24,10 +24,69 @@
             android:textColor="@color/white"
             android:textSize="34sp" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:text="Place Name:"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
         <EditText
             android:id="@+id/ed_add_place_comment"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="37dp"
+            android:layout_gravity="top"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
+            android:ems="10"
+            android:gravity="top"
+            android:inputType="textMultiLine"
+            android:scrollbars="vertical"
+            tools:ignore="LabelFor" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:text="Comment about place:"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/ed_add_place_name"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="top"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:ems="10"
+            android:gravity="top"
+            android:inputType="textMultiLine"
+            android:scrollbars="vertical"
+            tools:ignore="LabelFor" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:text="Place address:"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/ed_place_address"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:layout_gravity="top"
             android:layout_marginBottom="10dp"
             android:layout_marginEnd="10dp"
@@ -105,14 +164,14 @@
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
-            android:scrollbars="none"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
             android:id="@+id/recycler_view_pictures"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:overScrollMode="never"
             android:paddingBottom="10dp"
-            android:overScrollMode="never" />
+            android:scrollbars="none" />
 
     </LinearLayout>
 

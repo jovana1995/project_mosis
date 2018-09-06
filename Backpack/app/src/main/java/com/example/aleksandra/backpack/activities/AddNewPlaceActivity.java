@@ -2,6 +2,8 @@ package com.example.aleksandra.backpack.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Parcelable;
@@ -13,15 +15,21 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.aleksandra.backpack.BackpackApplication;
+import com.example.aleksandra.backpack.Models.FirebaseAccess;
+import com.example.aleksandra.backpack.Models.PlaceModel;
 import com.example.aleksandra.backpack.R;
 import com.example.aleksandra.backpack.adapters.GalleryAdapter;
 import com.example.aleksandra.backpack.utils.Utils;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class AddNewPlaceActivity extends AppCompatActivity {
     private List<Uri> list = new ArrayList<>();
@@ -34,7 +42,85 @@ public class AddNewPlaceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_place);
 
-        testData();
+        final Button btnAddLocation = findViewById(R.id.bt_new_place_location);
+        btnAddLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent mainIntent = new Intent(AddNewPlaceActivity.this,MainGoogleMapActivity.class);
+                startActivity(mainIntent);
+                finish();
+            }
+        });
+
+
+        String lat="",lon="";
+        PlaceModel pm=new PlaceModel();
+        if(getIntent().hasExtra("latitude"))
+        {
+              lat=getIntent().getStringExtra("latitude");
+              lon=getIntent().getStringExtra("longitude");
+
+            Geocoder geocoder;
+            List<Address> addresses=null;
+            geocoder = new Geocoder(this, Locale.getDefault());
+
+            try {
+                if(Double.valueOf(lat)>-90&&Double.valueOf(lat)<90&&Double.valueOf(lon)>-90&&Double.valueOf(lon)<90)
+                    addresses = geocoder.getFromLocation(Double.valueOf(lat), Double.valueOf(lon), 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            if(addresses!=null) {
+                String address = addresses.get(0).getAddressLine(0);
+                String city = addresses.get(0).getLocality();
+                String state = addresses.get(0).getAdminArea();
+                String country = addresses.get(0).getCountryName();
+                String postalCode = addresses.get(0).getPostalCode();
+                String knownName = addresses.get(0).getFeatureName();
+
+                EditText ed_address = (EditText) findViewById(R.id.ed_place_address);
+                  String add=knownName+","+address+"\n"+city+", "+state+", "+country;
+                 ed_address.setText(add);
+            }
+
+        }
+
+       final Button btnAddNewPlace = findViewById(R.id.bt_new_place_add);
+        final String lon1=lon;
+        final String lat1=lat;
+        btnAddNewPlace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                EditText name=(EditText)findViewById(R.id.ed_add_place_name);
+                EditText comment=(EditText)findViewById(R.id.ed_add_place_comment);
+                EditText adress=(EditText)findViewById(R.id.ed_place_address);
+                if(!name.getText().toString().isEmpty()&&!comment.getText().toString().isEmpty()&&!adress.getText().toString().isEmpty()) {
+                    PlaceModel pm = new PlaceModel();
+
+                    pm.setPlaceName(name.getText().toString());
+                    pm.setPlaceLocation(adress.getText().toString());
+                    pm.setComment(comment.getText().toString());
+
+                    pm.setLongitute(lon1);
+                    pm.setLatitude(lat1);
+                    FirebaseAccess.getInstance().addNewPlace(pm);
+                    Toast.makeText(AddNewPlaceActivity.this,"New place added!!!!",Toast.LENGTH_SHORT);
+                    Intent mainIntent = new Intent(AddNewPlaceActivity.this,ProfileActivity.class);
+                    startActivity(mainIntent);
+
+                }
+                else
+                {
+                    Toast.makeText(AddNewPlaceActivity.this,"Some fields are empty!!!!",Toast.LENGTH_SHORT);
+                }
+            }
+
+        });
+
+     //   testData();
     }
 
     private void testData() {

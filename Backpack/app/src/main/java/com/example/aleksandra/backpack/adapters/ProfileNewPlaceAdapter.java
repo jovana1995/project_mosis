@@ -14,8 +14,8 @@ import android.widget.TextView;
 import com.example.aleksandra.backpack.BackpackApplication;
 import com.example.aleksandra.backpack.R;
 import com.example.aleksandra.backpack.activities.EventActivity;
-import com.example.aleksandra.backpack.models.PersonModel;
-import com.example.aleksandra.backpack.models.PlaceModel;
+import com.example.aleksandra.backpack.Models.PersonModel;
+import com.example.aleksandra.backpack.Models.PlaceModel;
 import com.example.aleksandra.backpack.utils.Utils;
 
 import java.util.List;

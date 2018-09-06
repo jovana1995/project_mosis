@@ -8,9 +8,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.aleksandra.backpack.BackpackApplication;
-import com.example.aleksandra.backpack.models.PersonModel;
+import com.example.aleksandra.backpack.Models.FirebaseAccess;
+import com.example.aleksandra.backpack.Models.PersonModel;
 import com.example.aleksandra.backpack.R;
 import com.example.aleksandra.backpack.adapters.CommentsAdapter;
 
@@ -26,7 +28,12 @@ public class PlacesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_places);
-
+        if(getIntent().hasExtra("position"))
+        {
+            int i=getIntent().getIntExtra("position",0);
+            TextView placeName=(TextView) findViewById(R.id.tw_place_name);
+            placeName.setText(FirebaseAccess.getInstance().getPlace(i).placeName);
+        }
         testData();
     }
 

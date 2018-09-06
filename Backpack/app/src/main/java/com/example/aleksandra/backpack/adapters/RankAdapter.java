@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.aleksandra.backpack.R;
-import com.example.aleksandra.backpack.models.PersonModel;
+import com.example.aleksandra.backpack.Models.PersonModel;
 import com.example.aleksandra.backpack.utils.Utils;
 
 import java.util.List;

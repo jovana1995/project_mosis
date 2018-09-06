@@ -1,4 +1,4 @@
-package com.example.aleksandra.backpack.models;
+package com.example.aleksandra.backpack.Models;
 
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;

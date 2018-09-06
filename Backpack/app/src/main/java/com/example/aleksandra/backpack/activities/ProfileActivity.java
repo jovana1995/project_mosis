@@ -10,17 +10,21 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.aleksandra.backpack.BackpackApplication;
+import com.example.aleksandra.backpack.Models.FirebaseAccess;
 import com.example.aleksandra.backpack.R;
 import com.example.aleksandra.backpack.adapters.CommentsAdapter;
 import com.example.aleksandra.backpack.adapters.ProfileCommentAdapter;
 import com.example.aleksandra.backpack.adapters.ProfileEventAdapter;
 import com.example.aleksandra.backpack.adapters.ProfileNewPlaceAdapter;
-import com.example.aleksandra.backpack.models.CommentModel;
-import com.example.aleksandra.backpack.models.EventModel;
-import com.example.aleksandra.backpack.models.PlaceModel;
+import com.example.aleksandra.backpack.Models.CommentModel;
+import com.example.aleksandra.backpack.Models.EventModel;
+import com.example.aleksandra.backpack.Models.PlaceModel;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,13 +41,15 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+
         testData();
+
     }
 
     public void testData() {
         commentsList.add(new CommentModel("sdhybcujdbcsvhbdsivkudsbvikbwik", "MyPlace", "Golubarska 13, Nis", "2h ago"));
-        eventList.add(new EventModel("8pm", "In front of the restaurant", "https://lh6.googleusercontent.com/-uOsWbD_YAVo/AAAAAAAAAAI/AAAAAAAAATc/tbmd6HaYp34/photo.jpg", "dhbcuvwu ib  b biwb iwb", "Anne Smith", "England", "Sea Thai Restaurant", "la rue sue", "2w ago"));
-        placeList.add(new PlaceModel("vhjsbvjs", "Thai restaurant", "Rue la sue", "England", "+2222 2 2 2 222", "https://lh6.googleusercontent.com/-uOsWbD_YAVo/AAAAAAAAAAI/AAAAAAAAATc/tbmd6HaYp34/photo.jpg", "2w ago"));
+        eventList.add(new EventModel("8pm", "In front of the restaurant", "https://lh6.googleusercontent.com/-uOsWbD_YAVo/AAAAAAAAAAI/AAAAAAAAATc/tbmd6HaYp34/photo.jpg", "dhbcuvwu ib  b biwb iwb", "Anne Smith", "England", "Sea Thai Restaurant", "la rue sue", "2w ago",""));
+        placeList.add(new PlaceModel("vhjsbvjs", "Thai restaurant", "Rue la sue", "England", "+2222 2 2 2 222", "https://lh6.googleusercontent.com/-uOsWbD_YAVo/AAAAAAAAAAI/AAAAAAAAATc/tbmd6HaYp34/photo.jpg", "2w ago","0","0","0"));
         initViews();
     }
 

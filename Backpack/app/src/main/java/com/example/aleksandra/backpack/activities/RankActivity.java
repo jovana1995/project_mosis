@@ -9,13 +9,13 @@ import com.example.aleksandra.backpack.BackpackApplication;
 import com.example.aleksandra.backpack.R;
 import com.example.aleksandra.backpack.adapters.PeopleGoingToEventAdapter;
 import com.example.aleksandra.backpack.adapters.RankAdapter;
-import com.example.aleksandra.backpack.models.PersonModel;
+import com.example.aleksandra.backpack.Models.PersonModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RankActivity extends AppCompatActivity {
-    private List<PersonModel> list = new ArrayList<>();
+    private List<com.example.aleksandra.backpack.Models.PersonModel> list = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

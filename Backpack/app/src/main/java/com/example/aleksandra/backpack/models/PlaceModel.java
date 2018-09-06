@@ -1,4 +1,4 @@
-package com.example.aleksandra.backpack.models;
+package com.example.aleksandra.backpack.Models;
 
 import java.io.Serializable;
 
@@ -10,8 +10,13 @@ public class PlaceModel implements Serializable {
     public String placePhone;
     public String placeImage;
     public String timePassed;
-
-    public PlaceModel(String comment, String placeName, String placeLocation, String placeState, String placePhone, String placeImage, String timePassed) {
+    public  String placeKey;
+    public  String latitude;
+    public String longitute;
+    public String userId;
+    public  PlaceModel()
+    {}
+    public PlaceModel(String comment, String placeName, String placeLocation, String placeState, String placePhone, String placeImage, String timePassed,String lat, String lon, String u) {
         this.comment = comment;
         this.placeName = placeName;
         this.placeLocation = placeLocation;
@@ -19,6 +24,34 @@ public class PlaceModel implements Serializable {
         this.placePhone = placePhone;
         this.placeImage = placeImage;
         this.timePassed = timePassed;
+        this.latitude=lat;
+        this.longitute=lon;
+        this.userId=u;
+
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitute() {
+        return longitute;
+    }
+
+    public void setLongitute(String longitute) {
+        this.longitute = longitute;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getPlaceState() {

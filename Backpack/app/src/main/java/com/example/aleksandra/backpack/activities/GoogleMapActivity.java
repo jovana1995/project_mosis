@@ -1,15 +1,13 @@
-package com.example.aleksandra.backpack;
+package com.example.aleksandra.backpack.activities;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
@@ -23,23 +21,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.example.aleksandra.backpack.models.User;
-import com.example.aleksandra.backpack.models.*;
-import com.example.aleksandra.backpack.activities.HomeActivity;
-import com.example.aleksandra.backpack.activities.SigninActivity;
-import com.example.aleksandra.backpack.models.User;
+import com.example.aleksandra.backpack.Models.PlaceModel;
+import com.example.aleksandra.backpack.R;
+import com.example.aleksandra.backpack.Models.User;
+import com.example.aleksandra.backpack.Models.FirebaseAccess;
+import com.example.aleksandra.backpack.adapters.ProfileNewPlaceAdapter;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -63,11 +60,12 @@ public class GoogleMapActivity extends FragmentActivity implements OnMapReadyCal
         mapFragment.getMapAsync(this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
+
         // setSupportActionBar(toolbar);
-        lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+         lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
      //   provider = lm.getBestProvider(new Criteria(), true);
 
-        provider="gps";
+      //  provider="gps";
         /*FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +85,7 @@ public class GoogleMapActivity extends FragmentActivity implements OnMapReadyCal
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        Location location = lm.getLastKnownLocation(provider);
+     //  Location location = lm.getLastKnownLocation(provider);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -97,7 +95,6 @@ public class GoogleMapActivity extends FragmentActivity implements OnMapReadyCal
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
 
 
     }
@@ -114,6 +111,8 @@ public class GoogleMapActivity extends FragmentActivity implements OnMapReadyCal
      */
     public static final int PERMISSION_ACCESS_FINE_LOCATION = 1;
     private  static HashMap<Marker,Integer> markerUserIDMap;
+    private  static HashMap<Marker,Integer> markerPlaceIDMap;
+
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -129,40 +128,61 @@ public class GoogleMapActivity extends FragmentActivity implements OnMapReadyCal
             mMap.setMyLocationEnabled(true);
          //   marker = mMap.addMarker(new MarkerOptions().position(sydney).title("Current Location is here...!!! "));
 
-            addUsersMarkers();
+           addUsersMarkers();
+            addPlaceMarkers();
             mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                 @Override
                 public boolean onMarkerClick(Marker marker) {
-/*                    Intent i = new Intent(GoogleMapActivity.this, GoogleMapActivity.class);
-                    int a =markerUserIDMap.get(marker);
+                    Intent i = new Intent(GoogleMapActivity.this, PlacesActivity.class);
+                    int a =Integer.valueOf(marker.getTitle());
                     i.putExtra("position", a);
                     startActivity(i);
-*/
-                    Toast.makeText(GoogleMapActivity.this,marker.getPosition().latitude+" "+marker.getPosition().longitude, Toast.LENGTH_SHORT).show();
+
+                 //   Toast.makeText(GoogleMapActivity.this,marker.getPosition().latitude+" "+marker.getPosition().longitude, Toast.LENGTH_SHORT).show();
                     return true;
                 }
             });
 
         }
+
     }
     public   void addUsersMarkers()
     {
 
         //ovde treba skloniti
-
-        ArrayList<User> places = UserData.getInstance().getUsers();
+        ArrayList<PlaceModel> places = FirebaseAccess.getInstance().getPlaces();
         markerUserIDMap = new HashMap<Marker, Integer>((int) ((double) places.size() * 1.2));
         for (int i = 0; i < places.size(); i++) {
-            User place = places.get(i);
+            PlaceModel place = places.get(i);
             String lat = place.getLatitude();
-            String lon = place.getLongitude();
+            String lon = place.getLongitute();
             LatLng loc = new LatLng(Double.parseDouble(lat), Double.parseDouble(lon));
             MarkerOptions markerOptions = new MarkerOptions();
             markerOptions.position(loc);
             markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_action_eye_open));
-            markerOptions.title(place.getFirst_name());
+            markerOptions.title(String.valueOf(i));
             Marker marker = mMap.addMarker(markerOptions);
             markerUserIDMap.put(marker, i);
+        }
+    }
+    public   void addPlaceMarkers()
+    {
+
+        //ovde treba skloniti
+        ArrayList<PlaceModel> places = FirebaseAccess.getInstance().getPlaces();
+        markerPlaceIDMap = new HashMap<Marker, Integer>((int) ((double) places.size() * 1.2));
+        for (int i = 0; i < places.size(); i++) {
+            PlaceModel place = places.get(i);
+            String lat = place.getLatitude();
+            String lon = place.getLongitute();
+            LatLng loc = new LatLng(Double.parseDouble(lat), Double.parseDouble(lon));
+            MarkerOptions markerOptions = new MarkerOptions();
+            markerOptions.position(loc);
+            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_action_eye_open));
+            markerOptions.title(String.valueOf(i));
+
+            Marker marker = mMap.addMarker(markerOptions);
+            markerPlaceIDMap.put(marker, i);
         }
     }
 
@@ -179,7 +199,7 @@ public class GoogleMapActivity extends FragmentActivity implements OnMapReadyCal
             // for ActivityCompat#requestPermissions for more details.
          //   return;
         }
-        lm.requestLocationUpdates(provider, 400, 1, this);
+     /*   lm.requestLocationUpdates(provider, 400, 1, this);
         lat = location.getLatitude();
         lng = location.getLongitude();
 
@@ -198,20 +218,20 @@ public class GoogleMapActivity extends FragmentActivity implements OnMapReadyCal
 
         User u=new User();
         int index=0;
-        for(int i=0;i<UserData.getInstance().getUsers().size();i++)
+        for(int i = 0; i< FirebaseAccess.getInstance().getUsers().size(); i++)
         {
-            if(email==UserData.getInstance().getUsers().get(i).getEmail() ) { u=UserData.getInstance().getUsers().get(i);
+            if(email== FirebaseAccess.getInstance().getUsers().get(i).getEmail() ) { u= FirebaseAccess.getInstance().getUsers().get(i);
             index=i;
             }
         }
 
-        u=UserData.getInstance().getUsers().get(index);
+        u= FirebaseAccess.getInstance().getUsers().get(index);
         u.setLatitude(String.valueOf(lat));
         u.setLongitude(String.valueOf(lng));
-        u.UserKey=UserData.getInstance().getUser(index).UserKey;
-        UserData.getInstance().updateUser(index,u.getFirst_name(),u.getLast_name(),u.getEmail(),u.getPassword(),u.getGender(),u.getUsername(),u.getLatitude(),u.getLongitude());
+        u.UserKey= FirebaseAccess.getInstance().getUser(index).UserKey;
+        //FirebaseAccess.getInstance().updateUser(index,u.getFirst_name(),u.getLast_name(),u.getEmail(),u.getPassword(),u.getGender(),u.getUsername(),u.getLatitude(),u.getLongitude());
        addUsersMarkers();
-        Toast.makeText(this,lat+" "+lng,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,lat+" "+lng,Toast.LENGTH_SHORT).show();*/
 
     }
     @Override
@@ -243,7 +263,7 @@ public class GoogleMapActivity extends FragmentActivity implements OnMapReadyCal
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-       lm.requestLocationUpdates(provider, 400, 1, this);
+//       lm.requestLocationUpdates(provider, 400, 1, this);
 
     }
 
@@ -311,12 +331,18 @@ public class GoogleMapActivity extends FragmentActivity implements OnMapReadyCal
         if (id == R.id.nav_home) {
             // Handle the camera action
         } else if (id == R.id.nav_rank) {
-
+            Intent mainIntent = new Intent(GoogleMapActivity.this,RankActivity.class);
+            startActivity(mainIntent);
+            finish();
         } else if (id == R.id.nav_radius) {
 
         } else if (id == R.id.nav_profile) {
+            Intent mainIntent = new Intent(GoogleMapActivity.this,ProfileActivity.class);
+            startActivity(mainIntent);
+            finish();
 
         } else if (id == R.id.nav_settings) {
+
 
         } else if (id == R.id.nav_logout) {
             FirebaseAuth auth=FirebaseAuth.getInstance();

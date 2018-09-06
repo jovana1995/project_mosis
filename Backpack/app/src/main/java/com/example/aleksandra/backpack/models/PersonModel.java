@@ -1,4 +1,4 @@
-package com.example.aleksandra.backpack.models;
+package com.example.aleksandra.backpack.Models;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -8,7 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import com.example.aleksandra.backpack.BackpackApplication;
 import com.example.aleksandra.backpack.R;
 import com.example.aleksandra.backpack.adapters.PeopleGoingToEventAdapter;
-import com.example.aleksandra.backpack.models.PersonModel;
+import com.example.aleksandra.backpack.Models.PersonModel;
 
 import java.util.ArrayList;
 import java.util.List;

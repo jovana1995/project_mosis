@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <EditText
+        android:id="@+id/TFaddress"
+        android:layout_width="180dp"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp" />
+
+    <Button
+        android:id="@+id/Bsearch"
+        android:background="@color/yellow"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_gravity="right"
+        android:onClick="onSearch"
+        android:drawableStart="@drawable/ic_search"
+        tools:ignore="RtlHardcoded" />
+
+    <Button
+        android:id="@+id/Bnext"
+        android:background="@color/yellow"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:onClick="onNext"
+        android:textColor="@color/black"
+        android:text="@string/next"
+        tools:ignore="RtlHardcoded" />
+
+</LinearLayout>
